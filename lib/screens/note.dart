@@ -40,14 +40,21 @@ class NotePage extends StatelessWidget {
             child: ListView(
               children: [
                 Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.fromLTRB(16, 10, 16, 0),
                   child: Text(
-                    note.title,
-                    style: TextStyle(fontSize: 20),
+                    note.getDate(),
+                    style: TextStyle(fontSize: 14),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(16.0),
+                  child: Text(
+                    note.title,
+                    style: TextStyle(fontSize: 22),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 0, horizontal: 16),
                   child: Text(
                     note.description,
                     style: TextStyle(fontSize: 15),
