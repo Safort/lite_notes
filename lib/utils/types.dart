@@ -21,7 +21,7 @@ class Note {
 
   String getDate() {
     initializeDateFormatting();
-    return DateFormat('dd.MM.yyyy').format(datetime);
+    return DateFormat('EEE, H:m, dd.MM.yyyy').format(datetime);
   }
 
   Map<String, dynamic> toJson() => {
