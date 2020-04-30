@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/notes.dart';
 
-
 class NotePage extends StatelessWidget {
-  // final Note note;
   final int noteIndex;
 
   NotePage(this.noteIndex);

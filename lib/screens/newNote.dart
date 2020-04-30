@@ -19,8 +19,8 @@ class NewNotePage extends StatelessWidget {
                 ),
                 new RaisedButton(
                   color: Colors.greenAccent,
-                  onPressed: () {
-                    model.addNote(note.title, note.description);
+                  onPressed: () async {
+                    await model.addNote(note.title, note.description);
                     Navigator.pop(context);
                   },
                   child: Text(
