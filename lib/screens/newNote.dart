@@ -41,6 +41,7 @@ class NewNotePage extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.all(10),
                   child: TextField(
+                    autofocus: true,
                     decoration: InputDecoration(
                       labelText: 'Title',
                       border: OutlineInputBorder(),

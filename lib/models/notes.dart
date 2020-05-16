@@ -23,7 +23,17 @@ class NotesModel extends ChangeNotifier {
 
   addNote(String title, String description) async {
     await box.add(Note(title, description));
+
     _notes = box.values.toList();
+
+    notifyListeners();
+  }
+
+  removeNote(int index) async {
+    await box.deleteAt(index);
+
+    _notes = box.values.toList();
+
     notifyListeners();
   }
 }

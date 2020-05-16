@@ -7,7 +7,9 @@ import 'package:lite_notes/screens/newNote.dart';
 import 'package:lite_notes/models/notes.dart';
 
 class ListPage extends StatelessWidget {
-  getList(List<Note> notes) {
+  getList(NotesModel model) {
+    final List<Note> notes = model.notes;
+
     return ListView.builder(
       itemCount: notes.length,
       itemBuilder: (context, index) {
@@ -17,11 +19,21 @@ class ListPage extends StatelessWidget {
           math.min(10, note.description.length)
         );
 
-        return ListTile(
-          title: Text(note.title),
-          subtitle: Text(subtitle),
-          trailing: Icon(Icons.keyboard_arrow_right),
-          onTap: () => onTap(context, index, note),
+        return Dismissible(
+          key: UniqueKey(),
+          onDismissed: (direction) async {
+            await model.removeNote(index);
+
+            Scaffold
+              .of(context)
+              .showSnackBar(SnackBar(content: Text("\"${note.title}\" removed!")));
+          },
+          child: ListTile(
+            title: Text(note.title),
+            subtitle: Text(subtitle),
+            trailing: Icon(Icons.keyboard_arrow_right),
+            onTap: () => onTap(context, index, note),
+          )
         );
       },
     );
@@ -46,7 +58,7 @@ class ListPage extends StatelessWidget {
             )
           ),
           body: Center(
-            child: notes.length > 0 ? getList(notes) : getEmptyContent(),
+            child: notes.length > 0 ? getList(model) : getEmptyContent(),
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
